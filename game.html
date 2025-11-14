@@ -1,0 +1,222 @@
+ <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://kit.fontawesome.com/473d6e2e46.js" crossorigin="anonymous"></script>
+  <title>🎮 GameHub - Buy Your Favorite Games</title>
+
+  <!-- Tailwind & DaisyUI -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animation plugin -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <link rel="stylesheet" href="game.css" />
+</head>
+
+<body class="font-sans bg-base-200 text-base-content">
+  <!-- HEADER -->
+  <header class="navbar bg-base-100 shadow-lg px-6 sticky top-0 z-50">
+    <div class="flex-1">
+      <a href="game.html" class="text-2xl font-bold text-primary">🎮 GameHub</a>
+    </div>
+
+    <div class="hidden md:flex gap-6">
+      <a href="game.html" class="hover:text-primary">Home</a>
+      <a href="store.html" class="hover:text-primary">Store</a>
+      <a href="wishlist.html" class="hover:text-primary">Wishlist</a>
+      <a href="history.html" class="hover:text-primary">History</a>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <span id="userGreeting" class="text-sm"></span>
+      <button onclick="logout()" class="btn btn-sm btn-error text-white">Logout</button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="dropdown dropdown-end md:hidden">
+      <label tabindex="0" class="btn btn-ghost">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box shadow w-52 mt-4">
+        <li><a href="game.html">Home</a></li>
+        <li><a href="store.html">Store</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="history.html">History</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero min-h-[80vh] bg-gradient-to-r from-primary to-accent text-neutral-content">
+    <div class="hero-content text-center">
+      <div class="max-w-xl" data-sr>
+        <h1 class="text-5xl font-extrabold mb-4">Discover & Buy Top Games</h1>
+        <p class="mb-6 text-lg opacity-90">Get the latest titles at unbeatable prices.</p>
+        <button class="btn btn-secondary btn-wide" onclick="window.location.href='store.html'">Browse Store</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED GAMES -->
+  <section class="py-16 px-6 bg-base-200">
+    <h2 class="text-3xl font-bold text-center mb-10">🔥 Featured Games</h2>
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-sr>
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300">
+        <figure><img src="h3.jpg" alt="Cyber Battle 2077" class="h-48 object-cover w-full" /></figure>
+        <div class="card-body items-center text-center">
+          <h3 class="card-title">Cyber Battle 2077</h3>
+          <p class="text-primary font-semibold">$49.99</p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition-transform duration-300">
+        <figure><img src="cod.jpg" alt="Kingdoms Clash" class="h-48 object-cover w-full" /></figure>
+        <div class="card-body items-center text-center">
+          <h3 class="card-title">Kingdoms Clash</h3>
+          <p class="text-primary font-semibold">$39.99</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO BANNER -->
+  <section class="hero min-h-[70vh]" style="background-image: url('banner2.jpg');">
+    <div class="hero-overlay bg-opacity-70"></div>
+    <div class="hero-content text-center text-neutral-content" data-sr>
+      <div class="max-w-2xl">
+        <h1 class="text-4xl font-bold mb-4">GameHub - Play Without Limits</h1>
+        <p class="mb-6 opacity-90">Discover top titles, new releases, and exclusive offers all in one place.</p>
+        <div class="flex justify-center gap-4">
+          <a href="store.html" class="btn btn-primary">Browse Store</a>
+          <a href="#latest" class="btn btn-outline btn-accent">See What's New</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST RELEASES -->
+  <section id="latest" class="py-16 px-6 bg-base-200">
+    <h2 class="text-3xl font-bold text-center mb-10">🎯 Latest Releases</h2>
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" data-sr>
+      <div class="card bg-base-100 shadow-lg hover:shadow-2xl transition">
+        <img src="coddd.jpg" alt="COD" class="h-52 w-full object-cover rounded-t-lg" />
+        <div class="card-body">
+          <h3 class="card-title">Call of Duty</h3>
+          <p>Epic first-person battles with stunning visuals.</p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-lg hover:shadow-2xl transition">
+        <img src="cs2.jpg" alt="CS2" class="h-52 w-full object-cover rounded-t-lg" />
+        <div class="card-body">
+          <h3 class="card-title">Counter Strike 2</h3>
+          <p>Next-gen competitive shooting experience.</p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-lg hover:shadow-2xl transition">
+        <img src="bat.jpg" alt="Batman" class="h-52 w-full object-cover rounded-t-lg" />
+        <div class="card-body">
+          <h3 class="card-title">Batman</h3>
+          <p>Dark Knight returns with vengeance and style.</p>
+        </div>
+      </div>
+
+      <div class="card bg-base-100 shadow-lg hover:shadow-2xl transition">
+        <img src="nfs.jpg" alt="NFS" class="h-52 w-full object-cover rounded-t-lg" />
+        <div class="card-body">
+          <h3 class="card-title">Need for Speed</h3>
+          <p>High-octane street racing redefined.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="py-16 text-center bg-base-100" data-sr>
+    <h3 class="text-3xl font-bold mb-4">About GameHub</h3>
+    <p class="max-w-2xl mx-auto opacity-80">
+      GameHub is your trusted platform to find and buy top-rated PC and console games.
+      Whether you're into RPGs, shooters, or indie gems, we've got you covered.
+    </p>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="py-16 text-center bg-gradient-to-r from-primary to-secondary text-white" data-sr>
+    <h3 class="text-3xl font-bold mb-2">Subscribe to Our Newsletter</h3>
+    <p class="opacity-90">Get the latest game deals and news delivered straight to your inbox!</p>
+    <form id="newsletter-form" class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
+      <input type="email" placeholder="Enter your email" required
+        class="input input-bordered w-full sm:w-80 text-black" />
+      <button type="submit" class="btn btn-accent">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-16 bg-base-200" data-sr>
+    <h3 class="text-3xl font-bold text-center mb-8">⭐ What Our Users Say</h3>
+    <div class="max-w-3xl mx-auto grid gap-6">
+      <div class="alert shadow-md bg-base-100">
+        <i class="fa-solid fa-quote-left text-xl text-primary"></i>
+        <div class="flex-1">
+          <p>"GameHub always has the best prices! My go-to for new releases."</p>
+          <span class="font-semibold text-sm">– Alex M.</span>
+        </div>
+      </div>
+
+      <div class="alert shadow-md bg-base-100">
+        <i class="fa-solid fa-quote-left text-xl text-primary"></i>
+        <div class="flex-1">
+          <p>"Fast delivery and great customer service. Highly recommend."</p>
+          <span class="font-semibold text-sm">– Jamie R.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer p-10 bg-base-300 text-base-content">
+    <aside>
+      <h2 class="text-2xl font-bold">🎮 GameHub</h2>
+      <p>Your ultimate destination for epic gaming adventures.</p>
+    </aside>
+    <nav>
+      <h6 class="footer-title">Links</h6>
+      <a class="link link-hover">Home</a>
+      <a class="link link-hover">Store</a>
+      <a class="link link-hover">About</a>
+      <a class="link link-hover">Contact</a>
+    </nav>
+    <nav>
+      <h6 class="footer-title">Follow Us</h6>
+      <div class="flex gap-4 text-xl">
+        <a href="#"><i class="fa-brands fa-facebook hover:text-primary"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter hover:text-primary"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram hover:text-primary"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube hover:text-primary"></i></a>
+      </div>
+    </nav>
+  </footer>
+
+  <div class="text-center p-4 bg-base-300 border-t border-base-100 text-sm">
+    © 2025 GameHub. All rights reserved.
+  </div>
+
+  <!-- Scripts -->
+  <script src="game.js"></script>
+
+  <script>
+    // ScrollReveal animations
+    ScrollReveal().reveal('[data-sr]', {
+      distance: '40px',
+      duration: 1000,
+      easing: 'ease-out',
+      origin: 'bottom',
+      interval: 150
+    });
+  </script>
+</body>
+</html>

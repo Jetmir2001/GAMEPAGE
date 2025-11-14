@@ -1,0 +1,274 @@
+ <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GameHub Store</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body class="font-inter bg-base-200 min-h-screen">
+  <!-- Header -->
+  <header class="navbar bg-base-100 shadow-md px-6">
+    <div class="flex-1">
+      <h1 class="text-2xl font-bold text-orange-500 flex items-center gap-2">🎮 GameHub</h1>
+    </div>
+    <div class="flex-none hidden md:flex gap-4">
+      <a href="game.html" class="btn btn-ghost">Home</a>
+      <a href="#" class="btn btn-ghost btn-active">Store</a>
+      <a href="wishlist.html" class="btn btn-ghost">Wishlist</a>
+      <a href="history.html" class="btn btn-ghost">History</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <span id="userGreeting" class="text-sm text-gray-400"></span>
+      <button onclick="logout()" class="btn btn-error text-white btn-sm">Logout</button>
+    </div>
+  </header>
+
+  <!-- Daily Deal Banner -->
+  <section class="bg-gradient-to-r from-orange-600 to-pink-600 text-white text-center py-10 px-4">
+    <h2 class="text-3xl font-bold mb-2">🔥 Daily Deal: <span id="deal-game-name">Cyber Strike</span></h2>
+    <p class="text-lg">Now <span id="deal-price" class="font-semibold">$19.99</span> 
+      <s id="deal-old-price" class="opacity-80 ml-1">$39.99</s></p>
+    <p class="text-sm mt-2">Deal ends in <span id="deal-timer" class="font-bold">00:00:00</span></p>
+  </section>
+
+  <!-- Search & Filter -->
+  <div class="flex flex-col md:flex-row justify-between items-center gap-3 px-6 mt-6">
+    <input id="searchInput" type="text" placeholder="Search games..." oninput="filterGames()" class="input input-bordered w-full md:w-1/2" />
+    <select id="categorySelect" onchange="filterGames()" class="select select-bordered w-full md:w-1/4">
+      <option value="all">All Categories</option>
+      <option value="rpg">RPG</option>
+      <option value="fps">Shooter</option>
+      <option value="strategy">Strategy</option>
+      <option value="fighting">Fighting</option>
+    </select>
+  </div>
+
+  <!-- Game Grid -->
+  <section class="p-6">
+    <h2 class="text-2xl font-bold mb-4 text-center text-white">Available Games</h2>
+    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" id="gameGrid">
+
+      <!-- Call of Duty -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="fps">
+        <figure><img src="coddd.jpg" alt="Call of Duty" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">
+            Call of Duty
+            <span class="wishlist-icon cursor-pointer text-xl" onclick="toggleWishlist(this, 'Call of Duty', 'coddd.jpg')">🤍</span>
+          </h2>
+          <p><span class="line-through text-gray-400">$60</span> <span class="text-green-400 font-bold">$45</span></p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <p class="text-xs text-orange-500">Only 3 left in stock!</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Call of Duty','fps','coddd.jpg',49.99,'Classic modern warfare shooter.','https://www.youtube.com/embed/ztjfwecrY8E')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Call of Duty',49.99,'coddd.jpg','fps',5)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Counter Strike -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="rpg">
+        <figure><img src="ccc.jpg" alt="Counter Strike" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <h2 class="card-title justify-between">Counter Strike 
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Counter Strike','ccc.jpg')">🤍</span>
+          </h2>
+          <p>$39.99</p>
+          <p class="text-sm text-red-500 font-semibold">Out of Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Counter Strike','Shooter','ccc.jpg',39.99,'Classic tactical shooter.','https://www.youtube.com/embed/c80dVYcL69E')">View</button>
+            <button class="btn btn-primary btn-sm" disabled>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mortal Kombat -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="fighting">
+        <figure><img src="mortal.jpg" alt="Mortal Kombat" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Mortal Kombat 
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Mortal Kombat','mortal.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Mortal Kombat','Strategy','mortal.jpg',34.99,'Intense fighting action with classic characters.','https://www.youtube.com/embed/jSi2LDkyKmI')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Mortal Kombat',34.99,'mortal.jpg','Strategy',2)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Halo -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="Shooter">
+        <figure><img src="halo.jpg" alt="Halo" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Halo
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Halo','halo.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Halo','Shooter','halo.jpg',34.99,'Epic sci-fi FPS adventure.','https://www.youtube.com/embed/PyMlV5_HRWk')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Halo',34.99,'halo.jpg','Shooter',4)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Need for Speed -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="RPG">
+        <figure><img src="nfs.jpg" alt="Need for Speed" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Need for Speed
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Need for Speed','nfs.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Need for Speed','RPG','nfs.jpg',34.99,'High-speed street racing thrills.','https://www.youtube.com/embed/K-5EdHZ0hBs')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Need for Speed',34.99,'nfs.jpg','RPG',3)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pokemon -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="Strategy">
+        <figure><img src="poke.jpg" alt="Pokemon" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Pokemon
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Pokemon','poke.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Pokemon','Strategy','pk.jpg',34.99,'Catch and train creatures to battle.','https://www.youtube.com/embed/GIp-WjVFkLM')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Pokemon',34.99,'poke.jpg','Strategy',2)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- World of Tanks -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="Shooter">
+        <figure><img src="wott.jpg" alt="World of Tanks" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <h2 class="card-title justify-between">World of Tanks
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'World of Tanks','wot.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-red-500 font-semibold">Out of Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('World of Tanks','Shooter','wot.jpg',34.99,'Strategic tank warfare online.','https://www.youtube.com/embed/Vxa5m4nS98A')">View</button>
+            <button class="btn btn-primary btn-sm" disabled>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grand Theft Auto -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="RPG">
+        <figure><img src="gtaa.jpg" alt="Grand Theft Auto" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Grand Theft Auto
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Grand Theft Auto','gta.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Grand Theft Auto','RPG','gta.jpg',34.99,'Open-world crime and adventure.','https://www.youtube.com/embed/QkkoHAzjnUs')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Grand Theft Auto',34.99,'gta.jpg','RPG',2)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sim City -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="Strategy">
+        <figure><img src="ssim.jpg" alt="Sim City" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Sim City
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Sim City','ssim.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Sim City','Strategy','sim.jpg',34.99,'Build and manage your own city.','https://www.youtube.com/embed/2830eSBU3uA')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Sim City',34.99,'ssim.jpg','Strategy',5)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resident Evil -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="Shooter">
+        <figure><img src="rs.jpg" alt="Resident Evil" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Resident Evil
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Resident Evil','rs.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Resident Evil','Shooter','rs.jpg',34.99,'Survival horror at its best.','https://www.youtube.com/embed/arEdruKxrQ8')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Resident Evil',34.99,'rs.jpg','Shooter',6)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spider Man -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="RPG">
+        <figure><img src="spidey.jpg" alt="Spider Man" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <h2 class="card-title justify-between">Spider Man
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Spider Man','spider.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-red-500 font-semibold">Out of Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Spider Man','RPG','spider.jpg',34.99,'Swing through New York as the web-slinger.','https://www.youtube.com/embed/q4GdJVvdxss')">View</button>
+            <button class="btn btn-primary btn-sm" disabled>Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Batman -->
+      <div class="card bg-base-100 shadow-xl hover:scale-105 transition relative" data-category="Shooter">
+        <figure><img src="bat.jpg" alt="Batman" class="h-48 w-full object-cover"/></figure>
+        <div class="card-body">
+          <div class="badge badge-error text-white absolute top-2 left-2">-30%</div>
+          <h2 class="card-title justify-between">Batman
+            <span class="wishlist-icon cursor-pointer" onclick="toggleWishlist(this,'Batman','bat.jpg')">🤍</span>
+          </h2>
+          <p>$34.99</p>
+          <p class="text-sm text-green-500 font-semibold">In Stock</p>
+          <div class="card-actions justify-end mt-2">
+            <button class="btn btn-outline btn-sm" onclick="viewDetails('Batman','Shooter','bat.jpg',34.99,'Dark knight action game.','https://www.youtube.com/embed/A6L6hZ4bRMI')">View</button>
+            <button class="btn btn-primary btn-sm" onclick="addToCart('Batman',34.99,'bat.jpg','Shooter',3)">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <dialog id="cartModal" class="modal">
+    <div class="modal-box text-center">
+      <h3 class="font-bold text-lg">Item added to cart!</h3>
+      <div class="mt-4 flex justify-center gap-3">
+        <button class="btn btn-outline" onclick="viewCart()">View Cart</button>
+        <button class="btn" onclick="document.getElementById('cartModal').close()">Continue Shopping</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="store.js"></script>
+</body>
+</html>

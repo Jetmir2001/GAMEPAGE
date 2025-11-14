@@ -1,0 +1,132 @@
+ <!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Details - GameHub</title>
+
+  <!-- TAILWIND + DAISYUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .star {
+      cursor: pointer;
+      font-size: 30px;
+      transition: 0.2s;
+    }
+    .star:hover {
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+
+<body class="bg-base-200">
+
+  <!-- ⭐ NAVBAR -->
+  <header class="navbar bg-base-100 shadow-md px-6">
+    <div class="navbar-start">
+      <a class="text-3xl font-bold text-primary">🎮 GameHub</a>
+    </div>
+
+    <div class="navbar-end space-x-4">
+     
+      <a href="store.html" class="btn btn-ghost">Store</a>
+      <a href="cart.html" class="btn btn-primary">Cart</a>
+    </div>
+  </header>
+
+  <!-- ⭐ MAIN WRAPPER -->
+  <main class="max-w-5xl mx-auto py-12 px-4 space-y-12">
+
+    <!-- ⭐ GAME INFO CARD -->
+    <div class="card lg:card-side bg-base-100 shadow-xl p-6">
+      <figure>
+        <img id="gameImage" class="rounded-xl w-64 object-cover" />
+      </figure>
+
+      <div class="card-body">
+        <h2 id="gameTitle" class="card-title text-3xl font-bold"></h2>
+        <p id="gameDescription" class="text-gray-600 leading-relaxed"></p>
+
+        <p class="text-xl font-semibold">
+          Price:
+          <span id="gamePrice" class="text-primary">$0.00</span>
+        </p>
+
+        <div class="card-actions">
+          <button id="addToCartBtn" class="btn btn-primary btn-lg">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⭐ TRAILER SECTION -->
+    <section>
+      <h3 class="text-2xl font-bold mb-4">🎬 Watch Trailer</h3>
+
+      <div class="rounded-xl overflow-hidden shadow-lg">
+        <div class="aspect-video">
+          <iframe
+            id="trailer"
+            class="w-full h-full"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ COMMENT SECTION -->
+    <section class="bg-base-100 rounded-xl shadow-md p-8">
+      <h3 class="text-2xl font-bold text-center mb-6">💬 Leave a Comment</h3>
+
+      <form id="commentForm" class="space-y-4 max-w-xl mx-auto">
+        <input id="commentName" type="text" placeholder="Your Name"
+          class="input input-bordered w-full" required />
+
+        <textarea id="commentText" placeholder="Your thoughts about the game..."
+          class="textarea textarea-bordered w-full" rows="4" required></textarea>
+
+        <button type="submit" class="btn btn-primary w-full">Post Comment</button>
+      </form>
+
+      <div id="commentsList" class="mt-8 space-y-4"></div>
+    </section>
+
+    <!-- ⭐ RATING SECTION -->
+    <section class="bg-base-100 rounded-xl shadow-md p-8 text-center">
+      <h3 class="text-2xl font-bold mb-6">⭐ Rate This Game</h3>
+
+      <form id="ratingForm" class="space-y-4 max-w-md mx-auto">
+        <input id="ratingName" type="text" class="input input-bordered w-full" placeholder="Your Name"
+          required />
+
+        <!-- STAR RATING -->
+        <div class="flex justify-center gap-2">
+          <span class="star" data-value="1">&#9734;</span>
+          <span class="star" data-value="2">&#9734;</span>
+          <span class="star" data-value="3">&#9734;</span>
+          <span class="star" data-value="4">&#9734;</span>
+          <span class="star" data-value="5">&#9734;</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full">Submit Rating</button>
+      </form>
+
+      <div id="ratingsList" class="mt-6 space-y-3"></div>
+
+      <p id="averageRating" class="text-lg font-semibold mt-4">Average Rating: N/A</p>
+    </section>
+
+  </main>
+
+  <!-- ⭐ FOOTER -->
+  <footer class="footer footer-center p-4 bg-base-300 text-base-content mt-10">
+    <aside>
+      <p>© 2025 GameHub — All Rights Reserved.</p>
+    </aside>
+  </footer>
+
+  <script src="details.js"></script>
+</body>
+</html>
